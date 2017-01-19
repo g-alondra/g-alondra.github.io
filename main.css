@@ -9,15 +9,15 @@ html, body {
 
 body {
   font-family: 'Lato', sans-serif;
-  background-image: url('https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwih6aKzx83RAhUOzWMKHUeqBjgQjRwIBw&url=http%3A%2F%2Fwww.clipartbro.com%2Fcategories%2Fwallpaper-corner-flowers-free-clipart&bvm=bv.144224172,d.cGc&psig=AFQjCNFZ-RODZ8Yb_H_vdOLnckmUz3E0qA&ust=1484892928729969');
+  background-image: url('http://www.clipartbro.com/clipart-image/corner-scroll-design-images-backgrounds-high-r-25158-wallpaper-clipart-159024');
   background-position: center top;
   background-size: cover;
-  margin: 0;
+  margin: center;
 }
 
 .life
 ul {
     list-style-type: none;
-    margin: 0;
+    margin: center;
     padding: 0;
 }
