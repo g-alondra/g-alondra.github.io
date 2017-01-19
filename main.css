@@ -9,8 +9,7 @@ html, body {
 
 body {
   font-family: 'Lato', sans-serif;
-  background-image: url('http://www.clipartbro.com/clipart-image/corner-scroll-design-images-backgrounds-high-r-25158-wallpaper-clipart-159024');
-  background-position: center top;
+  background-color: (67,56,90);
   background-size: cover;
   margin: center;
 }
