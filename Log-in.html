@@ -3,19 +3,18 @@
 </title>
 <h2> Log-in</h2>
 
-  <div class="container">
-    <label><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
+ <div class="container">
+<form> 
+  <input type="text" value="Username" checked> Username<br>
+  <input type="text" value="Password"> Password<br> 
+</form>
 
-    <label><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
-
-    <button type="submit">Login</button>
-    <input type="checkbox" checked="checked"> Remember me
-  </div>
-
-  <div class="container" style="background-color:#f1f1f1">
+<form action="action_page2.php">
+  <input type="submit" value="Submit"> 
+  <input type="checkbox" checked="checked"> Remember me
+</form>
+</div>
+ <div class="container" style="background-color:#f1f1f1">
     <button type="button" class="cancelbtn">Cancel</button>
     <span class="psw">Forgot <a href="#">password?</a></span>
   </div>
-</form>
