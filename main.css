@@ -14,7 +14,8 @@ li a {
 }
 
 /* Change the link color on hover */
+.life-item
 li a:hover {
     background-color: #555;
-    color: white;
+    color: yellow;
 }
