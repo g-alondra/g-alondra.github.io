@@ -1,4 +1,20 @@
 
+html, body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  background-image: url('https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwih6aKzx83RAhUOzWMKHUeqBjgQjRwIBw&url=http%3A%2F%2Fwww.clipartbro.com%2Fcategories%2Fwallpaper-corner-flowers-free-clipart&bvm=bv.144224172,d.cGc&psig=AFQjCNFZ-RODZ8Yb_H_vdOLnckmUz3E0qA&ust=1484892928729969');
+  background-position: center top;
+  background-size: cover;
+  margin: 0;
+}
+
 .life
 ul {
     list-style-type: none;
