@@ -44,7 +44,6 @@ ul {
   
 }
 
-table, th, td {
-    border: 1px solid black;
-  background-color: #FDD2FF;
+.please {
+   background-color: #FDD2FF;
 }
