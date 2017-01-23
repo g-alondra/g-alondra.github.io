@@ -35,6 +35,7 @@ ul {
   flex-wrap: wrap;
   justify-content: center;
   margin-top:2px;
+  background-color: #FDD2FF;
 }
 
 .yellow-item {
