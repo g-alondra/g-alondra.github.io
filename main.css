@@ -30,20 +30,7 @@ ul {
   font-family:'Harlow Solid Italic', san-serif;
 }
 
-.yellow {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top:2px;
-  background-color: #FDD2FF;
-}
 
-.yellow-item {
-  margin: 20px;
-  border: 7px solid #789076;
-  
-}
-
-.please {
+body,please {
    background-color: #FDD2FF;
 }
