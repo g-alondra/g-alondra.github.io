@@ -19,12 +19,12 @@ ul {
     list-style-type: none;
     margin: center;
     padding-left: 100px;
-    width: 300px;
-    height: 100px;
-    border: 1px solid blue;
+    width: 250px;
+    height: 175px;
+    border: 10px blue;
     box-sizing: border-box;
     font-family: 'Georgia', serif;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 .okay
