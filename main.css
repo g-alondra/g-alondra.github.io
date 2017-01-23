@@ -29,3 +29,20 @@ ul {
   background-color:#FDD2FF;
   font-family:'Harlow Solid Italic', san-serif;
 }
+
+.yellow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top:2px;
+}
+
+.yellow-item {
+  margin: 20px;
+  border: 7px solid #789076;
+  
+}
+
+.yellow-item .thumbnail {
+
+}
