@@ -7,43 +7,87 @@ Location
 <!DOCTYPE html>
 <html>
   <head>
-    <style>
+    <meta charset="UTF-8" />
+    <title>Geolocation and Google Maps API</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3dw8pKi3re-9HRixvZqGfB8SCa6owz7I&callback=initMap"></script>
+    <script>
+      function writeAddressName(latLng) {
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({
+          "location": latLng
+        },
+        function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK)
+            document.getElementById("address").innerHTML = results[0].formatted_address;
+          else
+            document.getElementById("error").innerHTML += "Unable to retrieve your address" + "<br />";
+        });
+      }
+
+      function geolocationSuccess(position) {
+        var userLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        // Write the formatted address
+        writeAddressName(userLatLng);
+
+        var myOptions = {
+          zoom : 16,
+          center : userLatLng,
+          mapTypeId : google.maps.MapTypeId.ROADMAP
+        };
+        // Draw the map
+        var mapObject = new google.maps.Map(document.getElementById("map"), myOptions);
+        // Place the marker
+        new google.maps.Marker({
+          map: mapObject,
+          position: userLatLng
+        });
+        // Draw a circle around the user position to have an idea of the current localization accuracy
+        var circle = new google.maps.Circle({
+          center: userLatLng,
+          radius: position.coords.accuracy,
+          map: mapObject,
+          fillColor: '#0000FF',
+          fillOpacity: 0.5,
+          strokeColor: '#0000FF',
+          strokeOpacity: 1.0
+        });
+        mapObject.fitBounds(circle.getBounds());
+      }
+
+      function geolocationError(positionError) {
+        document.getElementById("error").innerHTML += "Error: " + positionError.message + "<br />";
+      }
+
+      function geolocateUser() {
+        // If the browser supports the Geolocation API
+        if (navigator.geolocation)
+        {
+          var positionOptions = {
+            enableHighAccuracy: true,
+            timeout: 10 * 1000 // 10 seconds
+          };
+          navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError, positionOptions);
+        }
+        else
+          document.getElementById("error").innerHTML += "Your browser doesn't support the Geolocation API";
+      }
+
+      window.onload = geolocateUser;
+    </script>
+    <style type="text/css">
       #map {
-        height: 400px;
-        width: 100%;
-       }
+        width: 500px;
+        height: 500px;
+      }
     </style>
   </head>
   <body>
+    <h1>Basic example</h1>
     <div id="map"></div>
-    <script>
-      function initMap() {
-        var uluru = {lat: -25.363, lng: 131.044};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
-          center: uluru
-        });
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
-        });
-      }
-    </script>
-    
-    <script async defer
-            function showPosition(position) {
-    var latlon = position.coords.latitude + "," + position.coords.longitude;
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3dw8pKi3re-9HRixvZqGfB8SCa6owz7I&callback=initMap">
-      document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
-}
-    </script>
+    <p><b>Address</b>: <span id="address"></span></p>
+    <p id="error"></p>
   </body>
 </html>
+ 
 
-<body>
-      <div class="fine">
-        <ul>
-  <li><a href= "Pet Location.html"> Pet Location </a></li>
-</ul>
-  </div>
-</body>
+ 
