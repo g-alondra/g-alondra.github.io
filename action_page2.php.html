@@ -7,7 +7,7 @@ Location
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8" />
+    
     <title>Geolocation and Google Maps API</title>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3dw8pKi3re-9HRixvZqGfB8SCa6owz7I&callback=initMap"></script>
     <script>
@@ -46,9 +46,9 @@ Location
           center: userLatLng,
           radius: position.coords.accuracy,
           map: mapObject,
-          fillColor: '#0000FF',
+          fillColor: '#ff3333',
           fillOpacity: 0.5,
-          strokeColor: '#0000FF',
+          strokeColor: '#ff3333',
           strokeOpacity: 1.0
         });
         mapObject.fitBounds(circle.getBounds());
@@ -76,7 +76,7 @@ Location
     </script>
     <style type="text/css">
       #map {
-        width: 500px;
+        width: 100%px;
         height: 500px;
       }
     </style>
