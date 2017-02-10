@@ -10,7 +10,7 @@ html, body {
 
 body {
   font-family: 'Lato', sans-serif;
-  background-color: #b3edff;
+  background-color: #ffffff;
   margin: center;
 }
 .image { 
@@ -36,7 +36,7 @@ ul {
   list-style-type: none;
   margin: center;
   padding-left:200px;
-  background-color:#b3edff;
+  background-color:#ffffff;
   font-family:'Harlow Solid Italic', san-serif;
 }
 footer {
