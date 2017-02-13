@@ -24,6 +24,13 @@ h2 {
    left: 0; 
    width: 100%; 
 }
+.life
+ul {
+    list-style-type: none;
+    margin: center;
+    padding-left: 100px;
+}
+
 
 
  
