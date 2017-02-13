@@ -24,59 +24,6 @@ h2 {
    left: 0; 
    width: 100%; 
 }
-.life
-ul {
-    list-style-type: none;
-    margin: center;
-    padding-left: 100px;
-}
 
-.okay
-ul {
-  list-style-type: none;
-  margin: center;
-  padding-left:200px;
-  background-color:#ffffff;
-  font-family:'Harlow Solid Italic', san-serif;
-}
-footer {
-  font-size: 12px;
-  padding: 20px 0;
-}
 
-footer .col-sm-8 {
-  display: flex;
-  justify-content: flex-end;
-}
-
-footer ul {
-  list-style: none;
-}
-
-footer li img {
-  width: 32px;
-  height: 32px;
-}
-.cat {
-	background-color:#c123de;
-	-moz-border-radius:13px;
-	-webkit-border-radius:13px;
-	border-radius:13px;
-	border:1px solid #a511c0;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:28px;
-	font-weight:bold;
-	padding:17px 36px;
-	text-decoration:none;
-}
-.cat:hover {
-	background-color:#a20dbd;
-}
-.cat:active {
-	position:relative;
-	top:1px;
-}
  
