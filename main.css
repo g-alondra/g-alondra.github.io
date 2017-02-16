@@ -61,7 +61,7 @@ ul.topnav li a:hover {background-color: #2eb82e;}
 /* Hide the list item that contains the link that should open and close the topnav on small screens */
 ul.topnav li.icon {display: none;}
 
- Slideshow container */
+ /*Slideshow container */
 .slideshow-container {
   max-width: 1000px;
   position: relative;
