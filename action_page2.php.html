@@ -85,10 +85,40 @@ Location
     <p><b>Address</b>: <span id="address"></span></p>
     <p id="error"></p>
   </body>
-  <body>
     <!--Direction Button-->
-    <a href="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3dw8pKi3re-9HRixvZqGfB8SCa6owz7I&callback=initMap;={title},+{address},+{city},+{state-short}"></a>
-  </body>
+  <script>
+      function initMap() {
+        var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 7,
+          center: {lat: 41.85, lng: -87.65}
+        });
+        directionsDisplay.setMap(map);
+
+        var onChangeHandler = function() {
+          calculateAndDisplayRoute(directionsService, directionsDisplay);
+        };
+        document.getElementById('start').addEventListener('change', onChangeHandler);
+        document.getElementById('end').addEventListener('change', onChangeHandler);
+      }
+
+      function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+        directionsService.route({
+          origin: document.getElementById('start').value,
+          destination: document.getElementById('end').value,
+          travelMode: 'DRIVING'
+        }, function(response, status) {
+          if (status === 'OK') {
+            directionsDisplay.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+      }
+    </script>
+   
+ 
 </html>
  
 
