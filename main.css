@@ -40,6 +40,9 @@ ul.topnav {
     background-color: #99ff99;
 }
 
+.topnav ul li: hover{
+  background-color:#2eb82e;
+}
 /* Float the list items side by side */
 ul.topnav li {float: left;}
 
