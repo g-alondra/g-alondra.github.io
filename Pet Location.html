@@ -1,27 +1,124 @@
-<body>
-    <div id="map"></div>
-    <script>
-      navigator.geolocation.getCurrentPosition();
-var latitude = position.coords.latitude;
-var longitude = position.coords.longitude;
-      function initMap() {
-        var uluru = {lat: -25.363, lng: 131.044};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
-          center: uluru
-        });
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
-        });
-      }
-    </script>
+
     
-    <script async defer
-            function showPosition(position) {
-    var latlon = position.coords.latitude + "," + position.coords.longitude;
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3dw8pKi3re-9HRixvZqGfB8SCa6owz7I&callback=initMap">
-      document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
+    [code]
+/*
+
+ This example  prints the Wifi shield's MAC address, and
+ scans for available Wifi networks using the Wifi shield.
+ Every ten seconds, it scans again. It doesn't actually
+ connect to any network, so no encryption scheme is specified.
+
+ Circuit:
+ * WiFi shield attached
+
+ created 13 July 2010
+ by dlf (Metodo2 srl)
+ modified 21 Junn 2012
+ by Tom Igoe and Jaymes Dec
+ */
+
+
+#include <SPI.h>
+#include <WiFi.h>
+
+void setup() {
+  //Initialize serial and wait for port to open:
+  Serial.begin(9600);
+  while (!Serial) {
+    ; // wait for serial port to connect. Needed for native USB port only
+  }
+
+  // check for the presence of the shield:
+  if (WiFi.status() == WL_NO_SHIELD) {
+    Serial.println("WiFi shield not present");
+    // don't continue:
+    while (true);
+  }
+
+  String fv = WiFi.firmwareVersion();
+  if (fv != "1.1.0") {
+    Serial.println("Please upgrade the firmware");
+  }
+
+  // Print WiFi MAC address:
+  printWifiAddress();
 }
-    </script>
+
+void loop() {
+  // scan for existing networks:
+  Serial.println("Scanning available networks...");
+  listNetworks();
+  delay(10000);
+}
+
+void printWifiAddress() {
+  // the MAC address of your Wifi shield
+  byte wifi[6];
+
+  // print your MAC address:
+  WiFi.wifiAddress(mac);
+  Serial.print("Wifi: ");
+  Serial.print(wifi[5], HEX);
+  Serial.print(":");
+  Serial.print(wifi[4], HEX);
+  Serial.print(":");
+  Serial.print(wifi[3], HEX);
+  Serial.print(":");
+  Serial.print(wifi[2], HEX);
+  Serial.print(":");
+  Serial.print(wifi[1], HEX);
+  Serial.print(":");
+  Serial.println(wifi[0], HEX);
+}
+
+void listNetworks() {
+  // scan for nearby networks:
+  Serial.println("** Scan Networks **");
+  int numSsid = WiFi.scanNetworks();
+  if (numSsid == -1) {
+    Serial.println("Couldn't get a wifi connection");
+    while (true);
+  }
+
+  // print the list of networks seen:
+  Serial.print("number of available networks:");
+  Serial.println(numSsid);
+
+  // print the network number and name for each network found:
+  for (int thisNet = 0; thisNet < numSsid; thisNet++) {
+    Serial.print(thisNet);
+    Serial.print(") ");
+    Serial.print(WiFi.SSID(thisNet));
+    Serial.print("\tSignal: ");
+    Serial.print(WiFi.RSSI(thisNet));
+    Serial.print(" dBm");
+    Serial.print("\tEncryption: ");
+    printEncryptionType(WiFi.encryptionType(thisNet));
+  }
+}
+
+void printEncryptionType(int thisType) {
+  // read the encryption type and print out the name:
+  switch (thisType) {
+    case ENC_TYPE_WEP:
+      Serial.println("WEP");
+      break;
+    case ENC_TYPE_TKIP:
+      Serial.println("WPA");
+      break;
+    case ENC_TYPE_CCMP:
+      Serial.println("WPA2");
+      break;
+    case ENC_TYPE_NONE:
+      Serial.println("None");
+      break;
+    case ENC_TYPE_AUTO:
+      Serial.println("Auto");
+      break;
+  }
+}
+
+
+
+[/code]
   </body>
