@@ -89,14 +89,7 @@ Location
   
    
     
-    <style type="text/css">
-      #map {
-        width: 500px;
-        height: 400px;
-        margin-top: 10px;
-      }
-    </style>
-  
+
   <body>
     <h1>Calculate your route</h1>
     <form id="calculate-route" name="calculate-route" action="#" method="get">
@@ -107,7 +100,7 @@ Location
 
       <label for="to">To:</label>
       <input type="text" id="to" name="to" required="required" placeholder="Another address" size="30" />
-      <a id="to-link" href="#">Get my position</a>
+      <a id="to-link" href="#"></a>
       <br />
 
       <input type="submit" />
@@ -119,7 +112,7 @@ Location
 
 
     <!--Direction Button-->
-  <script>
+ <!-- <script>
       function initMap() {
         var directionsService = new google.maps.DirectionsService;
         var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -149,7 +142,7 @@ Location
           }
         });
       }
-    </script> 
+    </script> -->
    
  
 </html>
