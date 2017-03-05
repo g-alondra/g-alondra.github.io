@@ -85,23 +85,10 @@ Location
     <div id="map"></div>
     <p><b>Address</b>: <span id="address"></span></p>
     <p id="error"></p>
-  </body>
-  
-   
+ 
+
     
-
-  <body>
-
-      function calculateRoute(from, to) {
-        // Center initialized to Naples, Italy
-        var myOptions = {
-          zoom: 10,
-          center: new google.maps.LatLng(),
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        // Draw the map
-        var mapObject = new google.maps.Map(document.getElementById("map"), myOptions);
-    <h3>Directions:</h3>
+   <!-- <h3>Directions:</h3>
     <form id="calculate-route" name="calculate-route" action="#" method="get">
       <label for="from">From:</label>
       <input type="text" id="from" name="from" required="required" placeholder="Your Location" size="30" />
