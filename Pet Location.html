@@ -1,124 +1,89 @@
-
-    
-    [code]
-/*
-
- This example  prints the Wifi shield's MAC address, and
- scans for available Wifi networks using the Wifi shield.
- Every ten seconds, it scans again. It doesn't actually
- connect to any network, so no encryption scheme is specified.
-
- Circuit:
- * WiFi shield attached
-
- created 13 July 2010
- by dlf (Metodo2 srl)
- modified 21 Junn 2012
- by Tom Igoe and Jaymes Dec
- */
-
-
-#include <SPI.h>
-#include <WiFi.h>
-
-void setup() {
-  //Initialize serial and wait for port to open:
-  Serial.begin(9600);
-  while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
-  }
-
-  // check for the presence of the shield:
-  if (WiFi.status() == WL_NO_SHIELD) {
-    Serial.println("WiFi shield not present");
-    // don't continue:
-    while (true);
-  }
-
-  String fv = WiFi.firmwareVersion();
-  if (fv != "1.1.0") {
-    Serial.println("Please upgrade the firmware");
-  }
-
-  // Print WiFi MAC address:
-  printWifiAddress();
+<?php
+ 
+if ( isset( $_REQUEST ) && !empty( $_REQUEST ) ) {
+ if (
+ isset( $_REQUEST['phoneNumber'], $_REQUEST['carrier'], $_REQUEST['smsMessage'] ) &&
+  !empty( $_REQUEST['phoneNumber'] ) &&
+  !empty( $_REQUEST['carrier'] )
+ ) {
+  $message = wordwrap( $_REQUEST['smsMessage'], 70 );
+  $to = $_REQUEST['phoneNumber'] . '@' . $_REQUEST['carrier'];
+  $result = @mail( $to, '', $message );
+  print 'Message was sent to ' . $to;
+ } else {
+  print 'Not all information was submitted.';
+ }
 }
-
-void loop() {
-  // scan for existing networks:
-  Serial.println("Scanning available networks...");
-  listNetworks();
-  delay(10000);
-}
-
-void printWifiAddress() {
-  // the MAC address of your Wifi shield
-  byte wifi[6];
-
-  // print your MAC address:
-  WiFi.wifiAddress(mac);
-  Serial.print("Wifi: ");
-  Serial.print(wifi[5], HEX);
-  Serial.print(":");
-  Serial.print(wifi[4], HEX);
-  Serial.print(":");
-  Serial.print(wifi[3], HEX);
-  Serial.print(":");
-  Serial.print(wifi[2], HEX);
-  Serial.print(":");
-  Serial.print(wifi[1], HEX);
-  Serial.print(":");
-  Serial.println(wifi[0], HEX);
-}
-
-void listNetworks() {
-  // scan for nearby networks:
-  Serial.println("** Scan Networks **");
-  int numSsid = WiFi.scanNetworks();
-  if (numSsid == -1) {
-    Serial.println("Couldn't get a wifi connection");
-    while (true);
-  }
-
-  // print the list of networks seen:
-  Serial.print("number of available networks:");
-  Serial.println(numSsid);
-
-  // print the network number and name for each network found:
-  for (int thisNet = 0; thisNet < numSsid; thisNet++) {
-    Serial.print(thisNet);
-    Serial.print(") ");
-    Serial.print(WiFi.SSID(thisNet));
-    Serial.print("\tSignal: ");
-    Serial.print(WiFi.RSSI(thisNet));
-    Serial.print(" dBm");
-    Serial.print("\tEncryption: ");
-    printEncryptionType(WiFi.encryptionType(thisNet));
-  }
-}
-
-void printEncryptionType(int thisType) {
-  // read the encryption type and print out the name:
-  switch (thisType) {
-    case ENC_TYPE_WEP:
-      Serial.println("WEP");
-      break;
-    case ENC_TYPE_TKIP:
-      Serial.println("WPA");
-      break;
-    case ENC_TYPE_CCMP:
-      Serial.println("WPA2");
-      break;
-    case ENC_TYPE_NONE:
-      Serial.println("None");
-      break;
-    case ENC_TYPE_AUTO:
-      Serial.println("Auto");
-      break;
-  }
-}
-
-
-
-[/code]
-  </body>
+?>
+<!DOCTYPE html>
+ <head>
+   <meta charset="utf-8" />
+   <style>
+    body {
+     margin: 0;
+     padding: 3em 0;
+     color: #fff;
+     background: #0080d2;
+     font-family: Georgia, Times New Roman, serif;
+    }
+ 
+    #container {
+     width: 600px;
+     background: #fff;
+     color: #555;
+     border: 3px solid #ccc;
+     -webkit-border-radius: 10px;
+     -moz-border-radius: 10px;
+     -ms-border-radius: 10px;
+     border-radius: 10px;
+     border-top: 3px solid #ddd;
+     padding: 1em 2em;
+     margin: 0 auto;
+     -webkit-box-shadow: 3px 7px 5px #000;
+     -moz-box-shadow: 3px 7px 5px #000;
+     -ms-box-shadow: 3px 7px 5px #000;
+     box-shadow: 3px 7px 5px #000;
+    }
+ 
+    ul {
+     list-style: none;
+     padding: 0;
+    }
+ 
+    ul > li {
+     padding: 0.12em 1em
+    }
+ 
+    label {
+     display: block;
+     float: left;
+     width: 130px;
+    }
+ 
+    input, textarea {
+     font-family: Georgia, Serif;
+    }
+   </style>
+  </head>
+  <body>
+   <div id="container">
+    <h1>Sending SMS with PHP</h1>
+    <form action="" method="post">
+     <ul>
+      <li>
+       <label for="phoneNumber">Phone Number</label>
+       <input type="text" name="phoneNumber" id="phoneNumber" placeholder="3855550168" /></li>
+      <li>
+      <label for="carrier">Carrier</label>
+       <input type="text" name="carrier" id="carrier" />
+      </li>
+      <li>
+       <label for="smsMessage">Message</label>
+       <textarea name="smsMessage" id="smsMessage" cols="45" rows="15"></textarea>
+      </li>
+     <li><input type="submit" name="sendMessage" id="sendMessage" value="Send Message" /></li>
+    </ul>
+   </form>
+  </div>
+ </body>
+</html>
