@@ -1,54 +1,32 @@
-<!-- THIS A DIFFERENT STYLE SHEET FOR MY SIGN UP PAGE
- <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Sign Up Form</title>
-        <link rel="stylesheet" href="css/normalize.css">
-        <link href='http://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="main.css">
-    </head>
-    <body>
+<?php
+//if "email" variable is filled out, send email
+  if (isset($_REQUEST['email']))  {
+  
+  //Email information
+  $admin_email = "someone@example.com";
+  $email = $_REQUEST['email'];
+  $subject = $_REQUEST['subject'];
+  $comment = $_REQUEST['comment'];
+  
+  //send email
+  mail($admin_email, "$subject", $comment, "From:" . $email);
+  
+  //Email response
+  echo "Thank you for contacting us!";
+  }
+  
+  //if "email" variable is not filled out, display the form
+  else  {
+?>
 
-      <form action=" Sign-up.html" method="post">
-      
-        <h1>Sign Up</h1>
-        
-        <fieldset>
-          <legend><span class="number"></span>Your basic info</legend>
-          <label for="name">Name:</label>
-          <input type="text" id="name" name="user_name">
-          
-          <label for="mail">Email:</label>
-          <input type="email" id="mail" name="user_email">
-          
-          <label for="password">Password:</label>
-          <input type="password" id="password" name="user_password">
-            
-            <label for="phone number">Phone Number:</label>
-          <input type="phone number" id="phone number" name="user_phone number"> 
-            
-            
-          <legend><span class="number"></span> Pet info</legend>
-            
-            <label for="street address">Street Address:</label>
-          <input type="street address" id="street address" name="user_street address"> 
-            
-                    <label for="city">City:</label>
-          <input type="city" id="city" name="user_city"> 
-            
-               <label for="zip code">Zip Code:</label>
-          <input type="zip code" id="zip code" name="user_zip code"> 
-            
-               <label for="state">State:</label>
-          <input type="state" id="state" name="user_state"> 
-            <label>Pet range:</label>
-          <input type="radio" id="1" value="1" name="user_range"><label for="1" class="light">1 mile</label><br>
-          <input type="radio" id="2" value="2" name="user_range"><label for="2" class="light">2 mile</label>
-             <input type="radio" id="3" value="3" name="user_range"><label for="3" class="light">3 mile</label>
-          </fieldset>
-             
-        <button type="submit">Sign Up</button>
-      </form>
-      
-    </body> -->
-
+ <form method="post">
+  Email: <input name="email" type="text" /><br />
+  Subject: <input name="subject" type="text" /><br />
+  Message:<br />
+  <textarea name="comment" rows="15" cols="40"></textarea><br />
+  <input type="submit" value="Submit" />
+  </form>
+  
+<?php
+  }
+?>
