@@ -20,7 +20,6 @@
     <script type="text/javascript" src="https://pubnub.github.io/eon/v/eon/1.0.0/eon.js"></script>
     <link type="text/css" rel="stylesheet" href="https://pubnub.github.io/eon/v/eon/1.0.0/eon.css"/>
 
-
   </head>
   <body>
     <div id='map'></div>
@@ -41,21 +40,12 @@
       eon.map({
         pubnub: pubnub,
         id: 'map',
-        mbToken: 'pk.eyJ1IjoiZy1hbG9uZHJhIiwiYSI6ImNqMTE4cTlxNDAzajYyd3J0cW82MXkwMjMifQ.T0JOD_XV06_ft-Aiu-7T6Q' ,
-        mbId: 'g-alondra',
+        mbToken: 'pk.eyJ1IjoiaWFuamVubmluZ3MiLCJhIjoiZExwb0p5WSJ9.XLi48h-NOyJOCJuu1-h-Jg',
+        mbId: 'ianjennings.l896mh2e',
         channels: [channel],
         connect: connect,
         options: {
           zoomAnimation: false,
-          
-      //    <div id='map' style='width: 400px; height: 300px;'></div>
-
-//mapboxgl.accessToken = 'pk.eyJ1IjoiZy1hbG9uZHJhIiwiYSI6ImNqMTE4cTlxNDAzajYyd3J0cW82MXkwMjMifQ.T0JOD_XV06_ft-Aiu-7T6Q';
-//var map = new mapboxgl.Map({
-//container: 'map',
-//style: 'mapbox://styles/mapbox/streets-v9'
-//});
-
         },
       });
       function connect() {
@@ -76,4 +66,4 @@
       };
     </script>
   </body>
-</html
+</html>
