@@ -41,26 +41,26 @@
       eon.map({
         pubnub: pubnub,
         id: 'map',
-     //   mbToken: 'pk.eyJ1IjoiaWFuamVubmluZ3MiLCJhIjoiZExwb0p5WSJ9.XLi48h-NOyJOCJuu1-h-Jg',
-        mbId: 'ianjennings.l896mh2e',
+        mbToken: 'pk.eyJ1IjoiZy1hbG9uZHJhIiwiYSI6ImNqMTE4cTlxNDAzajYyd3J0cW82MXkwMjMifQ.T0JOD_XV06_ft-Aiu-7T6Q' ,
+        mbId: 'g-alondra',
         channels: [channel],
         connect: connect,
         options: {
           zoomAnimation: false,
           
-          <div id='map' style='width: 400px; height: 300px;'></div>
+      //    <div id='map' style='width: 400px; height: 300px;'></div>
 
-mapboxgl.accessToken = 'pk.eyJ1IjoiZy1hbG9uZHJhIiwiYSI6ImNqMTE4cTlxNDAzajYyd3J0cW82MXkwMjMifQ.T0JOD_XV06_ft-Aiu-7T6Q';
-var map = new mapboxgl.Map({
-container: 'map',
-style: 'mapbox://styles/mapbox/streets-v9'
-});
+//mapboxgl.accessToken = 'pk.eyJ1IjoiZy1hbG9uZHJhIiwiYSI6ImNqMTE4cTlxNDAzajYyd3J0cW82MXkwMjMifQ.T0JOD_XV06_ft-Aiu-7T6Q';
+//var map = new mapboxgl.Map({
+//container: 'map',
+//style: 'mapbox://styles/mapbox/streets-v9'
+//});
 
         },
       });
       function connect() {
         var point = {
-          latlng: [37.370375, -97.756138]
+          latlng: [42.81605504534439,-1.6395378112792969]
         };
         setInterval(function(){
           var new_point = JSON.parse(JSON.stringify(point));
