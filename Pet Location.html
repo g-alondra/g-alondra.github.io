@@ -1,84 +1,44 @@
-<!DOCTYPE html>    
-<html>       
-    <title>Testing</title>    
-    
-    <style>    
-      html, body {    
-        height: 100%;    
-        margin: 0;    
-        padding: 0;    
-      }    
-      #map {    
-        height: 99%;   
-        width: 99%;   
-      }    
-#panel {    
-  position: absolute;    
-  top: 10px;    
-  left: 25%;    
-  z-index: 5;    
-  background-color: #fff;    
-  padding: 5px;    
-  border: 1px solid #999;    
-  text-align: center;    
-}    
-#panel, .panel {    
-  font-family: 'Roboto','sans-serif';    
-  line-height: 30px;    
-  padding-left: 10px;    
-}    
-#panel select, #panel input, .panel select, .panel input {    
-  font-size: 15px;    
-}    
-#panel select, .panel select {    
-  width: 100%;    
-}    
-#panel i, .panel i {    
-  font-size: 12px;    
-}    
-</style>   
-<script async defer    
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3dw8pKi3re-9HRixvZqGfB8SCa6owz7I&callback=initMap"></script>    
-<script>    
-var map;    
-var markers = [];    
-    
-function initMap() {    
-  var lat_lng = {lat:34.195422, lng:};    
- var markersLatLng=     
-[{lat:34.196355, lng:-118.605444},    
-      lat:34.198715, lng: -118.604478},    
-{lat:34.199159, lng: -118.598567},    
-{lat:34.195680, lng:-118.596710},    
-{lat:34.192202, lng:-118.593427},    
-{lat:34.192574, lng:-118.601077},    
-{lat:34.193701, lng:-118.601603];    
-    
-  map = new google.maps.Map(document.getElementById('map'), {    
-    zoom: 5,    
-    center: lat_lng,    
-    mapTypeId: google.maps.MapTypeId.TERRAIN    
-  });    
-    
-  // Adds a marker at the center of the map.    
-  for (var i = 0; i < markersLatLng.length; i++) {    
-   var lat_lng = new google.maps.LatLng(markersLatLng[i].lat,markersLatLng[i].lng);  
-    addMarker(lat_lng);  
-}       
-}    
-    
-// Adds a marker to the map and push to the array.    
-function addMarker(location) {    
-  var marker = new google.maps.Marker({    
-    position: location,    
-    map: map    
-  });    
-}    
-</script>         
-</head>    
-  <body>    
-    <div id="map"></div>   
-  </body>    
-</html>  
+<html>
+<head>
+  
+  <title>testing</title>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3dw8pKi3re-9HRixvZqGfB8SCa6owz7I&callback=initMap"></script>
+</head>
+<body>
+  <div id="map" style="height: 400px; width: 500px;">
+</div>
+<script type="text/javascript">
+    var locations = [
+      ['Bondi Beach', -33.890542, 151.274856, 4],
+      ['Coogee Beach', -33.923036, 151.259052, 5],
+      ['Cronulla Beach', -34.028249, 151.157507, 3],
+      ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
+      ['Maroubra Beach', -33.950198, 151.259302, 1]
+    ];
 
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 10,
+      center: new google.maps.LatLng(-33.92, 151.25),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
 
+    var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) { 
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+    }
+  </script>
+</body>
+</html>
