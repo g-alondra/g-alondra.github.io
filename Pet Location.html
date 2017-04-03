@@ -1,69 +1,82 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset=utf-8 />
-    <title>EON Maps</title>
-    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-      }
-      #map {
-        position:absolute;
-        top:0;
-        bottom:0;
-        width:100%;
-      }
-    </style>
-
-    <script type="text/javascript" src="https://pubnub.github.io/eon/v/eon/1.0.0/eon.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://pubnub.github.io/eon/v/eon/1.0.0/eon.css"/>
-
-  </head>
-  <body>
-    <div id='map'></div>
-    <script>
-      function getNonZeroRandomNumber(){
-        var random = Math.floor(Math.random()*199) - 99;
-        if(random==0) return getNonZeroRandomNumber();
-        return random;
-      }
-    </script>
-    <script>
-      
-      var pubnub = new PubNub({
-        publishKey: 'pub-c-fb219043-8c1e-422d-9d9f-36d714696b8d',
-        subscribeKey: 'sub-c-847c362e-17ef-11e7-bb8a-0619f8945a4f'
-      });
-      var channel = 'pubnub-mapbox' + getNonZeroRandomNumber();
-      eon.map({
-        pubnub: pubnub,
-        id: 'map',
-        mbToken: 'pk.eyJ1IjoiaWFuamVubmluZ3MiLCJhIjoiZExwb0p5WSJ9.XLi48h-NOyJOCJuu1-h-Jg',
-        mbId: 'ianjennings.l896mh2e',
-        channels: [channel],
-        connect: connect,
-        options: {
-          zoomAnimation: false,
-        },
-      });
-      function connect() {
-        var point = {
-          latlng: [42.81605504534439,-1.6395378112792969]
-        };
-        setInterval(function(){
-          var new_point = JSON.parse(JSON.stringify(point));
-          new_point.latlng = [
-            new_point.latlng[0] + (getNonZeroRandomNumber() * 0.1),
-            new_point.latlng[1] + (getNonZeroRandomNumber() * 0.2)
-          ];
-          pubnub.publish({
-            channel: channel,
-            message: [new_point]
-          });
-        }, 1000);
-      };
-    </script>
-  </body>
-</html>
+<!DOCTYPE html>    
+<html>    
+  <head><!-- www.techstrikers.com -->    
+    <title>Add Multiple Markers in Google Map</title>    
+    <style>    
+      html, body {    
+        height: 100%;    
+        margin: 0;    
+        padding: 0;    
+      }    
+      #map {    
+        height: 99%;   
+        width: 99%;   
+      }    
+#panel {    
+  position: absolute;    
+  top: 10px;    
+  left: 25%;    
+  z-index: 5;    
+  background-color: #fff;    
+  padding: 5px;    
+  border: 1px solid #999;    
+  text-align: center;    
+}    
+#panel, .panel {    
+  font-family: 'Roboto','sans-serif';    
+  line-height: 30px;    
+  padding-left: 10px;    
+}    
+#panel select, #panel input, .panel select, .panel input {    
+  font-size: 15px;    
+}    
+#panel select, .panel select {    
+  width: 100%;    
+}    
+#panel i, .panel i {    
+  font-size: 12px;    
+}    
+</style>    
+<script async defer    
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3dw8pKi3re-9HRixvZqGfB8SCa6owz7I&callback=initMap"></script>    
+<script>    
+var map;    
+var markers = [];    
+    
+function initMap() {    
+  var lat_lng = {lat:22.08672, lng: 78.42444};    
+ var markersLatLng=     
+[{lat:23.67502, lng:76.2533},    
+{lat:22.17754, lng:76.38519},    
+{lat:21.38179, lng:82.6034},    
+{lat:22.0757, lng:79.1537},    
+{lat:23.8961, lng:82.4276},    
+{lat:24.9365, lng:78.9559},    
+{lat:22.11649, lng:85.8114}];    
+    
+  map = new google.maps.Map(document.getElementById('map'), {    
+    zoom: 5,    
+    center: lat_lng,    
+    mapTypeId: google.maps.MapTypeId.TERRAIN    
+  });    
+    
+  // Adds a marker at the center of the map.    
+  for (var i = 0; i < markersLatLng.length; i++) {    
+   var lat_lng = new google.maps.LatLng(markersLatLng[i].lat,markersLatLng[i].lng);  
+    addMarker(lat_lng);  
+}       
+}    
+    
+// Adds a marker to the map and push to the array.    
+function addMarker(location) {    
+  var marker = new google.maps.Marker({    
+    position: location,    
+    map: map    
+  });    
+}    
+</script>         
+</head>    
+  <body>    
+    <div id="map"></div>     
+  </body>    
+</html>  
