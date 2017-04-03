@@ -2,27 +2,8 @@
 <html>    
   <head><!-- www.techstrikers.com -->    
     <title>Testing</title>    
-      <style>
-.alert {
-    padding: 20px;
-    background-color: #f44336;
-    color: white;
-}
-.closebtn {
-    margin-left: 15px;
-    color: white;
-    font-weight: bold;
-    float: right;
-    font-size: 22px;
-    line-height: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-.closebtn:hover {
-    color: black;
-}
-</style>
-<!--    <style>    
+    
+    <style>    
       html, body {    
         height: 100%;    
         margin: 0;    
@@ -56,24 +37,12 @@
 #panel i, .panel i {    
   font-size: 12px;    
 }    
-</style>   --> 
+</style>   
 <script async defer    
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3dw8pKi3re-9HRixvZqGfB8SCa6owz7I&callback=initMap"></script>    
 <script>    
 var map;    
 var markers = [];    
-   function writeAddressName(latLng) {
-        var geocoder = new google.maps.Geocoder();
-        geocoder.geocode({
-          "location": latLng
-        },
-        function(results, status) {
-          if (status == google.maps.GeocoderStatus.OK)
-            document.getElementById("address").innerHTML = results[0].formatted_address;
-          else
-            document.getElementById("error").innerHTML += "Unable to retrieve your address" + "<br />";
-        });
-      }
     
 function initMap() {    
   var lat_lng = {lat:22.08672, lng: 78.42444};    
