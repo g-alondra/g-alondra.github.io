@@ -57,7 +57,7 @@
       }
       /* Optional: Makes the sample page fill the window. */
       html, body {
-        height: 100%;
+        height: 50%;
         margin: 0;
         padding: 0;
       }
@@ -71,17 +71,17 @@
 
       function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 5,
-          center: {lat: 24.886, lng: -70.268},
+          zoom: 15,
+          center: {lat: 34.19443, lng: -118.605530},
           mapTypeId: 'terrain'
         });
 
         // Define the LatLng coordinates for the polygon's path.
         var triangleCoords = [
-          {lat: 25.774, lng: -80.190},
-          {lat: 18.466, lng: -66.118},
-          {lat: 32.321, lng: -64.757},
-          {lat: 25.774, lng: -80.190}
+          {lat: 34.198627, lng: -118.605057},
+          {lat:34.198653,  lng: -118.611205 },
+          {lat: 34.193426,  lng: -118.613426},
+          {lat: 34.194749,  lng: -118.593674}
         ];
 
         // Construct the polygon.
@@ -93,7 +93,7 @@
          // fillColor: '#FF0000',
           fillOpacity: 0.35
         });
-        bermudaTriangle.setMap(map);
+     //   bermudaTriangle.setMap(map);
       }
     </script>
     <script async defer
