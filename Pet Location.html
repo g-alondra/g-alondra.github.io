@@ -39,8 +39,12 @@
         }
       })(marker, i));
       
+       Polyline line = map.addPolyline(new PolylineOptions()
+     .add(new LatLng(34.194438, -118.605530), new LatLng(34.193851, -118.605944))
+     .width(5)
+     .color(Color.RED));
+      
     }
   </script>
-
 </body>
 </html>
