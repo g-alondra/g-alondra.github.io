@@ -1,258 +1,9 @@
- <!--<html>
-<head>
-  
-  <title>testing</title>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3dw8pKi3re-9HRixvZqGfB8SCa6owz7I&callback=initMap"></script>
-</head>
-<body>
-  <div id="map" style="height: 600px; width: 900px;">
-</div>
-<script type="text/javascript">
-    var locations = [
-      ['', 34.194438, -118.605530],
-      ['', 34.198627, -118.605057],
-      ['', 34.198653, -118.611205],
-      ['', 34.193426, -118.613426],
-      ['Hart', 34.194749, -118.593674]
-    ];
-
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 15,
-      center: new google.maps.LatLng(34.194438, -118.605530),
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    });
-
-    var infowindow = new google.maps.InfoWindow();
-
-    var marker, i;
-
-    for (i = 0; i < locations.length; i++) { 
-      marker = new google.maps.Marker({
-        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-        map: map
-      });
-
-      google.maps.event.addListener(marker, 'click', (function(marker, i) {
-        return function() {
-          infowindow.setContent(locations[i][0]);
-          infowindow.open(map, marker);
-        }
-      })(marker, i));
-    }
-  </script>
-</body>
-</html> -->
-
 <!DOCTYPE html>
-<html>
-
-  <head>
-  <title> Sample Second Year Project Website </title>
-  <link rel="stylesheet" type="text/css" href="main.css"/>
-  <style>
-    #map {
-      height: 400px;
-      width: 100%;
-    }
- 
-  </style>
-  </head>
-
-  <body>
-  <h1>Test of Google Maps Integration***</h1>
-
-    
-  
-<div id="map"></div>
-    <h3>...my map should have been above this</h3>
-    <h3>Enter Latitude and Longitude Here:</h3>
-    <tr>
-      <td><input type="text" name="petLatitude" id="petLatitude" value="34.177690"></td>
-      <td><input type="text" name="petLongitude" id="petLongitude" value="-118.597974"></td>
-    </tr>
-    <tr>
-      <td><button onclick="initMap()">Enter</button></td>
-    </tr>
-    <h3> </h3>
-  <script>
-    function getLatLon() {
-          var latPet = Number(document.getElementById("petLatitude").value);
-          var lonPet = Number(document.getElementById("petLongitude").value);
-          petPos = {lat: latPet, lng: lonPet};
-    }
-    function getMyPosition() {
-      // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            myPos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
-        } else {
-          myPos = {lat: 34.171451, lng: -118.595246};
-        }
-    }
-                        
-    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
-        infoWindow.open(map);
-      }
-    function initMap() {      
-      getMyPosition();
-      getLatLon();
-      
-      var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 14,
-        center: myPos,
-        mapTypeId: 'terrain'
-      });
-      infoWindow = new google.maps.InfoWindow;
-      
-      if ("geolocation" in navigator) {
-        var myMarker = {
-          path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
-          fillColor: 'red',
-          strokeColor: 'red',
-          strokeweight: 6,
-          scale: 6
-        };
-      }
-      else {
-        var myMarker = {
-          path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
-          fillColor: 'gold',
-          strokeColor: 'gold',
-          strokeweight: 6,
-          scale: 6
-        };
-      }
-      
-      var markerME = new google.maps.Marker({
-        position: myPos,
-        map: map,
-        icon: myMarker,
-        title:"My Location!"
-      });
-      
-      
-      var petMarker = {
-        path: google.maps.SymbolPath.CIRCLE,
-        fillColor: 'cyan',
-        strokeColor: 'blue',
-        strokeweight: 6,
-        scale: 8
-      };
-      var markerPET = new google.maps.Marker({
-        position: petPos,
-        map: map,
-        icon: petMarker,
-        title:"Pet's Location!"
-      });
-      
-      var lineSymbol = {
-        path: 'M 0,-1 0,1',
-        strokeOpacity: 1,
-        scale: 4
-      };
-      
-      var line = new google.maps.Polyline({
-        path: [myPos, petPos],
-        strokeOpacity: 0,
-        icons: [{
-          icon: lineSymbol,
-          offset: '0',
-          repeat: '20px'
-        }],
-        map: map
-      });
-    }
-    
-    
-    
-  </script>
-  <script async defer
-          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5JIChU_jIOODyXvqwBBu5ehMgRkd2IwM&callback=initMap">
-  </script>
-  
-    
-  </body>
-</html>
-
-
-<!--
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <title>Simple Polygon</title>
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="map"></div>
-    <script>
-
-      // This example creates a simple polygon representing the Bermuda Triangle.
-
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 15,
-          center: {lat: 34.19443, lng: -118.605530},
-          mapTypeId: 'terrain'
-        });
-
-        // Define the LatLng coordinates for the polygon's path.
-        var triangleCoords = [
-          {lat: 34.198627, lng: -118.605057},
-          {lat:34.198653,  lng: -118.611205 },
-          {lat: 34.193426,  lng: -118.613426},
-          {lat: 34.194749,  lng: -118.593674}
-        ];
-
-        // Construct the polygon.
-        var radius = new google.maps.Polygon({
-          paths: triangleCoords,
-          strokeColor: '#FF0000',
-          strokeOpacity: 0.8,
-          strokeWeight: 2,
-         // fillColor: '#FF0000',
-          fillOpacity: 0.35
-        });
-      radius.setMap(map);
-      }
-      
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3dw8pKi3re-9HRixvZqGfB8SCa6owz7I&callback=initMap">
-    </script>
-  </body>
-</html>
--->
-
-<!-- <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
     <title>Geolocation and Google Maps API</title>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXWuymBQvaI6TbJH9qd-DTeW9O-kNYBg8&callback=initMap"></script>
+    <script src="http://maps.google.com/maps/api/js?key=AIzaSyA3dw8pKi3re-9HRixvZqGfB8SCa6owz7I&sensor=true"></script>
     <script>
       function writeAddressName(latLng) {
         var geocoder = new google.maps.Geocoder();
@@ -266,12 +17,10 @@
             document.getElementById("error").innerHTML += "Unable to retrieve your address" + "<br />";
         });
       }
-
       function geolocationSuccess(position) {
         var userLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
         // Write the formatted address
         writeAddressName(userLatLng);
-
         var myOptions = {
           zoom : 16,
           center : userLatLng,
@@ -296,11 +45,9 @@
         });
         mapObject.fitBounds(circle.getBounds());
       }
-
       function geolocationError(positionError) {
         document.getElementById("error").innerHTML += "Error: " + positionError.message + "<br />";
       }
-
       function geolocateUser() {
         // If the browser supports the Geolocation API
         if (navigator.geolocation)
@@ -314,7 +61,6 @@
         else
           document.getElementById("error").innerHTML += "Your browser doesn't support the Geolocation API";
       }
-
       window.onload = geolocateUser;
     </script>
     <style type="text/css">
@@ -330,5 +76,6 @@
     <p><b>Address</b>: <span id="address"></span></p>
     <p id="error"></p>
   </body>
-</html>
--->
+</html> 
+
+<p> PLEASE </p>
