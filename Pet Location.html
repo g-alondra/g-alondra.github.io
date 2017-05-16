@@ -1,4 +1,4 @@
- <html>
+ <!--<html>
 <head>
   
   <title>testing</title>
@@ -41,7 +41,148 @@
     }
   </script>
 </body>
-</html> 
+</html> -->
+
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <title> Sample Second Year Project Website </title>
+  <link rel="stylesheet" type="text/css" href="main.css"/>
+  <style>
+    #map {
+      height: 400px;
+      width: 100%;
+    }
+ 
+  </style>
+  </head>
+
+  <body>
+  <h1>Test of Google Maps Integration***</h1>
+
+    
+  
+<div id="map"></div>
+    <h3>...my map should have been above this</h3>
+    <h3>Enter Latitude and Longitude Here:</h3>
+    <tr>
+      <td><input type="text" name="petLatitude" id="petLatitude" value="34.177690"></td>
+      <td><input type="text" name="petLongitude" id="petLongitude" value="-118.597974"></td>
+    </tr>
+    <tr>
+      <td><button onclick="initMap()">Enter</button></td>
+    </tr>
+    <h3> </h3>
+  <script>
+    function getLatLon() {
+          var latPet = Number(document.getElementById("petLatitude").value);
+          var lonPet = Number(document.getElementById("petLongitude").value);
+          petPos = {lat: latPet, lng: lonPet};
+    }
+    function getMyPosition() {
+      // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            myPos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          myPos = {lat: 34.171451, lng: -118.595246};
+        }
+    }
+                        
+    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
+      }
+    function initMap() {      
+      getMyPosition();
+      getLatLon();
+      
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 14,
+        center: myPos,
+        mapTypeId: 'terrain'
+      });
+      infoWindow = new google.maps.InfoWindow;
+      
+      if ("geolocation" in navigator) {
+        var myMarker = {
+          path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
+          fillColor: 'red',
+          strokeColor: 'red',
+          strokeweight: 6,
+          scale: 6
+        };
+      }
+      else {
+        var myMarker = {
+          path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
+          fillColor: 'gold',
+          strokeColor: 'gold',
+          strokeweight: 6,
+          scale: 6
+        };
+      }
+      
+      var markerME = new google.maps.Marker({
+        position: myPos,
+        map: map,
+        icon: myMarker,
+        title:"My Location!"
+      });
+      
+      
+      var petMarker = {
+        path: google.maps.SymbolPath.CIRCLE,
+        fillColor: 'cyan',
+        strokeColor: 'blue',
+        strokeweight: 6,
+        scale: 8
+      };
+      var markerPET = new google.maps.Marker({
+        position: petPos,
+        map: map,
+        icon: petMarker,
+        title:"Pet's Location!"
+      });
+      
+      var lineSymbol = {
+        path: 'M 0,-1 0,1',
+        strokeOpacity: 1,
+        scale: 4
+      };
+      
+      var line = new google.maps.Polyline({
+        path: [myPos, petPos],
+        strokeOpacity: 0,
+        icons: [{
+          icon: lineSymbol,
+          offset: '0',
+          repeat: '20px'
+        }],
+        map: map
+      });
+    }
+    
+    
+    
+  </script>
+  <script async defer
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5JIChU_jIOODyXvqwBBu5ehMgRkd2IwM&callback=initMap">
+  </script>
+  
+    
+  </body>
+</html>
 
 
 <!--
