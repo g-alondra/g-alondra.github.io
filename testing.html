@@ -107,11 +107,11 @@ function clearMapMarkers() {
     $('#ga-buttons').show();
 }
 // Removes map directions
-function clearDirections() {
+//function clearDirections() {
     // If there are directions being shown, clear them
-    if (directionsDisplay != null) {
-        directionsDisplay.setMap(null);
-        directionsDisplay = null;
+  //  if (directionsDisplay != null) {
+   //     directionsDisplay.setMap(null);
+    //    directionsDisplay = null;
     }
 }
 // Completely clears map
@@ -211,23 +211,23 @@ var ga = {
     // Default config
     "crossoverRate": 0.5,
     "mutationRate": 0.1,
-    "populationSize": 50,
-    "tournamentSize": 5,
-    "elitism": true,
-    "maxGenerations": 50,
+//    "populationSize": 50,
+ //   "tournamentSize": 5,
+ //   "elitism": true,
+ //   "maxGenerations": 50,
     
     "tickerSpeed": 60,
     // Loads config from HTML inputs
     "getConfig": function() {
         ga.crossoverRate = parseFloat($('#crossover-rate').val());
         ga.mutationRate = parseFloat($('#mutation-rate').val());
-        ga.populationSize = parseInt($('#population-size').val()) || 50;
-        ga.elitism = parseInt($('#elitism').val()) || false;
-        ga.maxGenerations = parseInt($('#maxGenerations').val()) || 50;
+   //     ga.populationSize = parseInt($('#population-size').val()) || 50;
+     //   ga.elitism = parseInt($('#elitism').val()) || false;
+       // ga.maxGenerations = parseInt($('#maxGenerations').val()) || 50;
     },
     
     // Evolves given population
-    "evolvePopulation": function(population, generationCallBack, completeCallBack) {        
+    /* "evolvePopulation": function(population, generationCallBack, completeCallBack) {        
         // Start evolution
         var generation = 1;
         var evolveInterval = setInterval(function() {
@@ -381,7 +381,7 @@ var ga = {
                     this.chromosome[index] = tempNode;
                 }
             }
-        };
+        };*/
         
         // Returns individuals route distance
         this.getDistance = function() {
