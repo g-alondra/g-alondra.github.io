@@ -40,21 +40,7 @@
         }
       })(marker, i));
       
-      polygon = map.drawPolygon({
-  paths: path,
-  strokeColor: '#BBD8E9',
-  strokeOpacity: 1,
-  strokeWeight: 3,
-  fillColor: '#BBD8E9',
-  fillOpacity: 0.6
-});
-map.addMarker({
-  lat: -12.043333,
-  lng: -77.028333,
-  draggable: true,
-  fences: [polygon],
-  outside: function(marker, fence) {
-    alert('This marker has been moved outside of its fence');
+      
   }
 });
       
