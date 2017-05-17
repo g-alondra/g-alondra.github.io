@@ -20,6 +20,18 @@
       [' 23201 Victory Blvd, West Hills', 34.186450, -118.631586],
       ['23701 Vanowen St, West Hills', 34.193150, -118.642542]
     ];
+  
+  var locations = new google.maps.Polyline({
+          path: locations,
+          geodesic: true,
+          strokeColor: '#FF0000',
+          strokeOpacity: 1.0,
+          strokeWeight: 2
+        });
+
+        locations.setMap(map);
+  
+  
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 15,
       center: new google.maps.LatLng(34.194438, -118.605530),
