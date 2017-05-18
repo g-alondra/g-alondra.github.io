@@ -26,8 +26,8 @@
     var infowindow = new google.maps.InfoWindow(); 
   var myMarker = {
           path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
-          fillColor: 'red',
-          strokeColor: 'red',
+          fillColor: 'green',
+          strokeColor: 'green',
           strokeweight: 6,
           scale: 6
         };
@@ -38,7 +38,7 @@
         title:"My Location!"
       });  
     var marker, i;
-    for (i = 1; i < locations.length; i++) { 
+    for (i = 4; i < locations.length; i++) { 
       marker = new google.maps.Marker({
         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
         map: map
