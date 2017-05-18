@@ -42,7 +42,7 @@ function initializeMap() {
         $('#destinations-count').html(nodes.length);
     });
     // Add "my location" button
-    var myLocationDiv = document.createElement('div');
+   var myLocationDiv = document.createElement('div');
     new getMyLocation(myLocationDiv, map);
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(myLocationDiv);
     
